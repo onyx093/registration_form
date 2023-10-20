@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rules\File;
+use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterUserRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class RegisterUserRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users', ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'profile_img' => ['sometimes', 'image'],
+            'profile_img' => ['nullable', File::image()],
         ];
     }
 }
