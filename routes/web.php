@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RegisterUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/registerForm');
+
+Route::get('/registerForm', [RegisterUserController::class, 'registrationForm'])->name('registrationForm');
+Route::post('/register', [RegisterUserController::class, 'store'])->name('register');
+// Route::middleware('guest')->group(function(){
+// });
