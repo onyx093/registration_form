@@ -16,7 +16,7 @@ class AuthRepository implements AuthRepositoryInterface {
             'password' => Hash::make($userData['password'])
         ]);
 
-        if($userData['profile_img']) {
+        if(isset($userData['profile_img'])) {
             $profile_img =$userData['profile_img'];
             $profile_img_path = Storage::disk('public')->put('profiles', $profile_img);
             $user->profile_img_url = Storage::url($profile_img_path);

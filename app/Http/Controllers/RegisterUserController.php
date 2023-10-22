@@ -18,7 +18,10 @@ class RegisterUserController extends Controller
 
     public function store(RegisterUserRequest $request){
         $user = $this->auth->storeNewUser($request->validated());
-        // event(new Registered($user));
+        // send_mail_to_newly_registered_users($user, $user);
+
+        /* The commented function from the helper file send emails to the new users after registration but the app uses model events to dispatch emails to new users */
+
 
         Auth::login($user);
         return redirect(route('dashboard'));
